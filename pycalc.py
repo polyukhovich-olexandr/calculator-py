@@ -17,6 +17,7 @@ from PyQt6.QtWidgets import (
     QWidget,
 )
 
+ERROR_MSG = "ERROR"
 WINDOW_SIZE = 235
 DISPLAY_HEIGHT = 35
 BUTTON_SIZE = 40
@@ -81,6 +82,14 @@ class PyCalcWindow(QMainWindow):
         self.display.setAlignment(Qt.AlignmentFlag.AlignRight)
         self.display.setReadOnly(True)
         self.generalLayout.addWidget(self.display)
+
+    def evaluateExpression(expression):
+        """Evaluate an expression (Model)."""
+        try:
+            result = str(eval(expression, {}, {}))
+        except Exception:
+            result = ERROR_MSG
+        return result
 
 
 if __name__ == "__main__":
